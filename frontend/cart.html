@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng của bạn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="index.html" class="logo">Blossom.</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="products.html">Sản phẩm</a></li>
+        </ul>
+        <div class="nav-icons">
+          <a href="cart.html" style="position: relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px">
+      <h2 style="text-align: center; margin-bottom: 30px">Giỏ hàng của bạn</h2>
+
+      <div class="cart-wrapper">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Sản phẩm</th>
+              <th>Giá</th>
+              <th>Số lượng</th>
+              <th>Tạm tính</th>
+              <th>Xóa</th>
+            </tr>
+          </thead>
+          <tbody id="cart-body"></tbody>
+        </table>
+      </div>
+
+      <div class="cart-total">
+        <h3>
+          Tổng cộng:
+          <span id="total-price" style="color: var(--primary-hover)">0₫</span>
+        </h3>
+        <div style="margin-top: 20px">
+          <a
+            href="products.html"
+            class="btn"
+            style="
+              background: transparent;
+              color: var(--text-dark);
+              border: 1px solid #ddd;
+            "
+            >Tiếp tục mua sắm</a
+          >
+          <a href="checkout.html" class="btn">Tiến hành thanh toán</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+  </body>
+</html>
