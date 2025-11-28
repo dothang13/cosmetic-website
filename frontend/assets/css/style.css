@@ -334,3 +334,121 @@ header {
     border-radius: 50%;
     border: 1px solid #fff; 
 }
+/* === PAGE HEADER (Banner phụ chung cho các trang con) === */
+.page-header {
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+.page-header h1 {
+    color: var(--primary-hover);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* === SỬA LỖI TRANG ABOUT US === */
+
+/* 1. Dàn trang sang ngang (Chia đôi ảnh và chữ) */
+.about-grid {
+    display: flex;           /* Quan trọng: Giúp các phần tử nằm ngang hàng */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    gap: 60px;               /* Khoảng cách giữa ảnh và chữ */
+    margin-bottom: 60px;     /* Đẩy phần Team xuống xa một chút */
+}
+
+/* 2. Chỉnh lại kích thước 2 cột */
+.about-img, .about-content {
+    flex: 1;                 /* Mỗi bên chiếm 50% màn hình */
+    width: 100%;             /* Đảm bảo nội dung không bị tràn */
+}
+
+/* 3. Trang trí ảnh cho đẹp (Bo góc + Bóng đổ) */
+.about-img img {
+    width: 100%;
+    border-radius: 20px;     /* Bo tròn góc ảnh */
+    box-shadow: 20px 20px 0px #ffe5ec; /* Tạo hiệu ứng bóng đổ màu hồng */
+    object-fit: cover;
+}
+
+/* 4. Responsive cho điện thoại (Khi màn hình nhỏ thì tự xuống dòng) */
+@media (max-width: 768px) {
+    .about-grid {
+        flex-direction: column; /* Quay về dạng dọc trên điện thoại */
+    }
+    .about-img img {
+        box-shadow: none;       /* Bỏ bóng đổ trên mobile cho gọn */
+        margin-bottom: 30px;
+    }
+}
+
+/* === TEAM SECTION (Trang About) === */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+.team-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+.team-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+.team-card h3 { font-size: 1.1rem; margin-bottom: 5px; }
+.team-card p { font-size: 0.9rem; color: #777; }
+
+/* === CONTACT PAGE STYLE === */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+.contact-info, .contact-form {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+.info-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    width: 25px;
+}
+.map-box { margin-top: 30px; }
+
+/* Form Style */
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-body);
+}
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .contact-wrapper { grid-template-columns: 1fr; }
+}
