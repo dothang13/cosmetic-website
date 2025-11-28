@@ -1,20 +1,44 @@
-// backend/controllers/productController.js
-const products = require("../data/products"); // Nhập dữ liệu từ file trên
+const Product = require("../models/productModel");
 
-// Logic 1: Lấy tất cả sản phẩm
-exports.getAllProducts = (req, res) => {
-  // Sau này thay dòng dưới bằng: const products = await ProductModel.findAll();
-  res.json(products);
+// Hàm hỗ trợ: Format đường dẫn ảnh
+const formatProductImage = (product) => {
+  if (product.thumbnail && product.thumbnail.startsWith("/img")) {
+    return {
+      ...product,
+      thumbnail: "http://localhost:3000" + "/data" + product.thumbnail,
+    };
+  }
+  return product;
 };
 
-// Logic 2: Lấy chi tiết 1 sản phẩm theo ID
-exports.getProductById = (req, res) => {
-  const id = parseInt(req.params.id); // Lấy ID từ URL và chuyển thành số
-  const product = products.find((p) => p.id === id);
+// --- CONTROLLER CHÍNH ---
 
-  if (product) {
-    res.json(product);
-  } else {
-    res.status(404).json({ message: "Sản phẩm không tồn tại" });
+exports.getAllProducts = async (req, res) => {
+  try {
+    const rawData = await Product.getAll();
+    //Format ảnh
+    const products = rawData.map(formatProductImage);
+    res.json(products);
+  } catch (error) {
+    console.error("Lỗi Controller:", error);
+    res.status(500).json({ message: "Lỗi Server khi lấy danh sách" });
+  }
+};
+
+exports.getProductById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const product = await Product.getById(id);
+
+    if (product) {
+      //Format ảnh
+      const formattedProduct = formatProductImage(product);
+      res.json(formattedProduct);
+    } else {
+      res.status(404).json({ message: "Không tìm thấy sản phẩm" });
+    }
+  } catch (error) {
+    console.error("Lỗi Controller:", error);
+    res.status(500).json({ message: "Lỗi Server khi xem chi tiết" });
   }
 };

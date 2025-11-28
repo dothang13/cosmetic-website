@@ -1,14 +1,18 @@
-// backend/server.js
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const productRoutes = require("./routes/productRoutes");
 
 const app = express();
-const PORT = 3000; // Server sẽ chạy ở cổng 3000
+const PORT = 3000; // Cổng Server
 
 // Middleware
 app.use(cors()); // Cho phép Frontend (đang chạy ở cổng khác) gọi vào
-app.use(express.json()); // Để server hiểu dữ liệu JSON
+app.use(express.json()); // Dữ liệu: JSON
+
+// --- CẤU HÌNH THƯ MỤC ẢNH TĨNH ---
+// backend/img
+app.use("/data/img", express.static(path.join(__dirname, "data", "img")));
 
 // Routes
 // Mọi đường dẫn bắt đầu bằng /api/products sẽ được xử lý bởi productRoutes

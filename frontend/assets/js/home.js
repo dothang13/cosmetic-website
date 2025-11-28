@@ -22,11 +22,11 @@ fetch(API_URL)
       html += `
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="${product.image}" alt="${product.title}">
+                        <img src="${product.thumbnail}" alt="${product.title}">
                     </div>
                     <div class="product-info">
                         <span style="font-size: 0.8rem; color: #999;">${
-                          product.category
+                          product.category_name
                         }</span>
                         <h3>${product.title}</h3>
                         <span class="price">${product.price.toLocaleString(
