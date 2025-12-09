@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - Blossom Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">Blossom.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-wrapper reverse"> <div class="auth-image">
+                <img src="https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Register Image">
+                <div class="auth-overlay">
+                    <h3>Join Us</h3>
+                    <p>Trở thành thành viên để tích điểm và nhận quà sinh nhật.</p>
+                </div>
+            </div>
+
+            <div class="auth-form">
+                <h2>Tạo tài khoản</h2>
+                <p class="auth-subtitle">Điền thông tin để đăng ký thành viên mới</p>
+
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Họ và tên</label>
+                        <input type="text" id="reg-name" placeholder="Ví dụ: Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="reg-email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input type="password" id="reg-password" placeholder="Tạo mật khẩu" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nhập lại mật khẩu</label>
+                        <input type="password" id="reg-repass" placeholder="Nhập lại mật khẩu" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-full">Đăng ký</button>
+                </form>
+
+                <p class="auth-switch">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

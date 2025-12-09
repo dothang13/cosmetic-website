@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý đơn hàng</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="brand"><i class="fa-solid fa-spa"></i> Blossom Admin</div>
+        <nav>
+            <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-chart-pie"></i> Tổng quan</a>
+            <a href="products.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Sản phẩm</a>
+            <a href="orders.html" class="menu-item active"><i class="fa-solid fa-cart-shopping"></i> Đơn hàng</a>
+            <a href="../index.html" class="menu-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <h2 class="header-title">Tất cả đơn hàng</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã ĐH</th>
+                        <th>Khách hàng</th>
+                        <th>Số điện thoại</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="order-table-body">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
