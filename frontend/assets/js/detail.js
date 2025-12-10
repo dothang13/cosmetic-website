@@ -31,13 +31,36 @@ fetch(API_URL)
                 <p class="detail-desc">${product.description}</p>
                 
                 <div style="margin-top: 30px;">
-                    <input type="number" value="1" min="1" style="padding: 10px; width: 60px; border: 1px solid #ddd; border-radius: 5px; margin-right: 10px;">
-                    <button class="btn" onclick="addToCart(${
+                    <input type="number" id="quantity" value="1" min="1" style="padding: 10px; width: 60px; border: 1px solid #ddd; border-radius: 5px; margin-right: 10px;">
+                    <button id="add-to-cart-btn" class="btn" onclick="addToCart(${
                       product.id
                     })">Thêm vào giỏ hàng</button>
                 </div>
             </div>
             `;
+
+      // --- PHẦN MỚI: XỬ LÝ THÊM VÀO GIỎ HÀNG ---
+
+      // 2. Tìm nút "Thêm vào giỏ hàng" và ô số lượng vừa tạo
+      const addToCartBtn = document.getElementById("add-to-cart-btn");
+      const quantityInput = document.getElementById("quantity");
+
+      addToCartBtn.addEventListener("click", function () {
+        // BƯỚC A: Kiểm tra đăng nhập
+        const userInfo = JSON.parse(localStorage.getItem("user_info"));
+
+        if (!userInfo) {
+          alert("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!");
+          window.location.href = "login.html"; // Chuyển hướng sang trang đăng nhập
+          return; // Dừng lại, không chạy code bên dưới nữa
+        }
+
+        // BƯỚC B: Lấy số lượng khách muốn mua
+        const quantity = parseInt(quantityInput.value) || 1;
+
+        // BƯỚC C: Thêm vào LocalStorage
+        addToCart(product, quantity);
+      });
     } else {
       detailContainer.innerHTML = `<h2>Không tìm thấy sản phẩm!</h2>`;
     }
@@ -48,7 +71,36 @@ fetch(API_URL)
       '<p style="text-align:center; color:red">Không thể tải chi tiết sản phẩm!</p>';
   });
 
-// Hàm giả lập thêm vào giỏ (Bạn có thể phát triển tiếp ở phần sau)
-function addToCart(id) {
-  alert("Đã thêm sản phẩm ID: " + id + " vào giỏ hàng!");
+// --- HÀM HỖ TRỢ: Thêm vào giỏ hàng ---
+function addToCart(product, quantity) {
+  // 1. Lấy giỏ hàng hiện tại từ LocalStorage (Nếu chưa có thì tạo mảng rỗng)
+  let cart = JSON.parse(localStorage.getItem("shopping_cart")) || [];
+
+  // 2. Kiểm tra xem sản phẩm này đã có trong giỏ chưa
+  const existingProductIndex = cart.findIndex((item) => item.id === product.id);
+
+  if (existingProductIndex > -1) {
+    // Nếu có rồi -> Cộng dồn số lượng
+    cart[existingProductIndex].quantity += quantity;
+  } else {
+    // Nếu chưa có -> Thêm mới vào mảng
+    // Chỉ lưu những thông tin cần thiết
+    cart.push({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      thumbnail: product.thumbnail,
+      quantity: quantity,
+    });
+  }
+
+  // 3. Lưu ngược lại vào LocalStorage
+  localStorage.setItem("shopping_cart", JSON.stringify(cart));
+
+  // 4. Thông báo và cập nhật icon giỏ hàng (nếu file main.js đã chạy)
+  alert(`Đã thêm sản phẩm vào giỏ hàng!`);
+
+  if (typeof updateCartCount === "function") {
+    updateCartCount(); // Gọi hàm cập nhật số trên icon (trong main.js)
+  }
 }

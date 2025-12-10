@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const productRoutes = require("./routes/productRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = 3000; // Cổng Server
@@ -17,6 +18,7 @@ app.use("/data/img", express.static(path.join(__dirname, "data", "img")));
 // Routes
 // Mọi đường dẫn bắt đầu bằng /api/products sẽ được xử lý bởi productRoutes
 app.use("/api/products", productRoutes);
+app.use("/api/auth", authRoutes);
 
 // Khởi động server
 app.listen(PORT, () => {
