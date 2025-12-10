@@ -262,75 +262,483 @@ header {
 }
 /* === CART PAGE STYLE === */
 .cart-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--white);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
 .cart-table th {
-    background: #ffe5ec; /* Màu hồng nền tiêu đề bảng */
-    padding: 15px;
-    text-align: center;
-    color: var(--primary-hover);
-    font-weight: 600;
+  background: #ffe5ec; /* Màu hồng nền tiêu đề bảng */
+  padding: 15px;
+  text-align: center;
+  color: var(--primary-hover);
+  font-weight: 600;
 }
 
 .cart-table td {
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #f0f0f0;
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 /* Hộp tăng giảm số lượng */
 .qty-box {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .qty-box button {
-    background: #f9f9f9;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 1rem;
+  background: #f9f9f9;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .qty-box button:hover {
-    background: #eee;
+  background: #eee;
 }
 
 .qty-box span {
-    padding: 0 10px;
-    font-weight: 500;
+  padding: 0 10px;
+  font-weight: 500;
 }
 
 /* Phần tổng tiền */
 .cart-total {
-    text-align: right;
-    margin-top: 30px;
-    background: var(--white);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
+  text-align: right;
+  margin-top: 30px;
+  background: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
 }
 
 .cart-count {
-    position: absolute;
-    top: -8px; 
-    right: -10px;
-    background-color: var(--primary-color); 
-    color: var(--white);
-    font-size: 0.7rem;
-    font-weight: bold;
-    height: 18px;
-    width: 18px;
-    line-height: 18px;
-    text-align: center;
-    border-radius: 50%;
-    border: 1px solid #fff; 
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: bold;
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+/* === PAGE HEADER (Banner phụ chung cho các trang con) === */
+.page-header {
+  background-color: var(--secondary-color);
+  text-align: center;
+  padding: 60px 20px;
+  margin-bottom: 40px;
+}
+.page-header h1 {
+  color: var(--primary-hover);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+/* === SỬA LỖI TRANG ABOUT US === */
+
+/* 1. Dàn trang sang ngang (Chia đôi ảnh và chữ) */
+.about-grid {
+  display: flex; /* Quan trọng: Giúp các phần tử nằm ngang hàng */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  gap: 60px; /* Khoảng cách giữa ảnh và chữ */
+  margin-bottom: 60px; /* Đẩy phần Team xuống xa một chút */
+}
+
+/* 2. Chỉnh lại kích thước 2 cột */
+.about-img,
+.about-content {
+  flex: 1; /* Mỗi bên chiếm 50% màn hình */
+  width: 100%; /* Đảm bảo nội dung không bị tràn */
+}
+
+/* 3. Trang trí ảnh cho đẹp (Bo góc + Bóng đổ) */
+.about-img img {
+  width: 100%;
+  border-radius: 20px; /* Bo tròn góc ảnh */
+  box-shadow: 20px 20px 0px #ffe5ec; /* Tạo hiệu ứng bóng đổ màu hồng */
+  object-fit: cover;
+}
+
+/* 4. Responsive cho điện thoại (Khi màn hình nhỏ thì tự xuống dòng) */
+@media (max-width: 768px) {
+  .about-grid {
+    flex-direction: column; /* Quay về dạng dọc trên điện thoại */
+  }
+  .about-img img {
+    box-shadow: none; /* Bỏ bóng đổ trên mobile cho gọn */
+    margin-bottom: 30px;
+  }
+}
+
+/* === TEAM SECTION (Trang About) === */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+.team-card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.team-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  object-fit: cover;
+  border: 3px solid var(--primary-color);
+}
+.team-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+.team-card p {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* === CONTACT PAGE STYLE === */
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+.contact-info,
+.contact-form {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+.info-item i {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  width: 25px;
+}
+.map-box {
+  margin-top: 30px;
+}
+
+/* Form Style */
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: var(--font-body);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================
+   CSS CHO TRANG LOGIN & REGISTER
+========================================= */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Căn giữa màn hình dọc */
+  padding: 40px 20px;
+  background: var(--secondary-color); /* Nền hồng nhạt toàn trang */
+}
+
+.auth-wrapper {
+  display: flex;
+  background: var(--white);
+  width: 900px;
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(255, 153, 172, 0.2); /* Bóng hồng */
+  overflow: hidden;
+}
+
+/* Đảo chiều cho trang Register */
+.auth-wrapper.reverse {
+  flex-direction: row-reverse;
+}
+
+/* --- Cột Ảnh --- */
+.auth-image {
+  flex: 1;
+  position: relative;
+  display: none; /* Ẩn trên mobile */
+}
+
+/* Hiện lại trên màn hình lớn */
+@media (min-width: 768px) {
+  .auth-image {
+    display: block;
+  }
+}
+
+.auth-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.auth-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: var(--white);
+}
+
+.auth-overlay h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* --- Cột Form --- */
+.auth-form {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-form h2 {
+  font-family: var(--font-heading);
+  color: var(--primary-hover);
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.auth-subtitle {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* Style riêng cho Input trong form login */
+.auth-form input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #eee;
+  background: #fdfdfd;
+  border-radius: 30px; /* Bo tròn mạnh tay cho mềm */
+  margin-bottom: 5px;
+  transition: var(--transition);
+}
+
+.auth-form input:focus {
+  border-color: var(--primary-color);
+  background: var(--white);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 153, 172, 0.1);
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.form-options a {
+  color: var(--primary-hover);
+  font-weight: 500;
+}
+
+.btn-full {
+  width: 100%; /* Nút bấm full chiều rộng */
+  border-radius: 30px;
+  padding: 15px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.95rem;
+}
+
+.auth-switch a {
+  color: var(--primary-hover);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .auth-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+  .auth-form {
+    padding: 30px 20px;
+  }
+}
+
+/* =========================================
+   CHECKOUT PAGE CSS
+========================================= */
+.checkout-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* Cột trái lớn hơn cột phải */
+  gap: 40px;
+}
+
+/* Các hộp chứa form */
+.form-box,
+.summary-box {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+}
+
+.form-box h3,
+.summary-box h3 {
+  font-family: var(--font-heading);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+
+/* Phần danh sách sản phẩm thu gọn */
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #eee;
+}
+
+.order-item .info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.order-item .name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-width: 150px; /* Cắt bớt tên nếu dài quá */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-item .qty {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.order-item .price {
+  font-weight: 600;
+  color: var(--primary-hover);
+}
+
+/* Phần tổng tiền */
+.order-total .row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.order-total .row.total {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #eee;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* Payment Method Radio Button Custom */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.payment-item:hover {
+  border-color: var(--primary-color);
+}
+
+.payment-item input {
+  margin-right: 10px;
+  accent-color: var(--primary-color); /* Màu hồng cho nút radio */
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkout-container {
+    grid-template-columns: 1fr; /* Mobile thì xếp dọc */
+  }
+  .summary-box {
+    order: -1; /* Đẩy phần tiền lên trên cùng để dễ xem */
+    margin-bottom: 20px;
+  }
 }
