@@ -40,34 +40,19 @@
           <thead>
             <tr>
               <th>Sản phẩm</th>
-              <th>Giá</th>
               <th>Số lượng</th>
               <th>Tạm tính</th>
               <th>Xóa</th>
             </tr>
           </thead>
-          <tbody id="cart-body"></tbody>
+
+          <tbody id="cart-table-body"></tbody>
         </table>
       </div>
 
       <div class="cart-total">
-        <h3>
-          Tổng cộng:
-          <span id="total-price" style="color: var(--primary-hover)">0₫</span>
-        </h3>
-        <div style="margin-top: 20px">
-          <a
-            href="products.html"
-            class="btn"
-            style="
-              background: transparent;
-              color: var(--text-dark);
-              border: 1px solid #ddd;
-            "
-            >Tiếp tục mua sắm</a
-          >
-          <a href="checkout.html" class="btn">Tiến hành thanh toán</a>
-        </div>
+        <h3>Tổng tiền: <span id="cart-total-price">0₫</span></h3>
+        <a href="checkout.html" class="btn checkout-btn">Thanh toán</a>
       </div>
     </div>
 
