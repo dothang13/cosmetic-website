@@ -9,4 +9,6 @@ router.get("/", productController.getAllProducts);
 // Định nghĩa: Khi ai đó vào đường dẫn có ID (/:id) thì chạy hàm getProductById
 router.get("/:id", productController.getProductById);
 
+router.delete("/:id", productController.deleteProduct);
+
 module.exports = router;
