@@ -1,63 +1,60 @@
-// === LOGIC GIỎ HÀNG (Lưu trong LocalStorage) ===
+// assets/js/main.js
 
-// 1. Hàm khởi tạo giỏ hàng (chạy ngay khi load trang)
-function initCart() {
-    let cart = localStorage.getItem('shopping-cart');
-    if (!cart) {
-        // Nếu chưa có thì tạo mảng rỗng
-        localStorage.setItem('shopping-cart', JSON.stringify([]));
-    }
-    updateCartCount();
+document.addEventListener("DOMContentLoaded", function () {
+  // === 1. XỬ LÝ HIỂN THỊ ĐĂNG NHẬP / ĐĂNG XUẤT ===
+  checkLoginStatus();
+
+  // === 2. XỬ LÝ SỐ LƯỢNG GIỎ HÀNG (Cập nhật số trên icon giỏ hàng) ===
+  updateCartCount();
+});
+
+function checkLoginStatus() {
+  const authLink = document.getElementById("auth-link");
+  if (!authLink) return; // Nếu không tìm thấy thẻ thì dừng, tránh lỗi
+
+  // Lấy thông tin user an toàn (dùng try-catch phòng trường hợp JSON lỗi)
+  let userInfo = null;
+  try {
+    userInfo = JSON.parse(localStorage.getItem("user_info"));
+  } catch (e) {
+    console.error("Lỗi đọc thông tin user:", e);
+    localStorage.removeItem("user_info"); // Xóa nếu dữ liệu bị lỗi
+  }
+
+  if (userInfo) {
+    // --- TRƯỜNG HỢP: ĐÃ ĐĂNG NHẬP ---
+    // Hiển thị tên người dùng (Chỉ lấy tên đầu cho ngắn gọn nếu muốn)
+    authLink.innerHTML = `<i class="fa-solid fa-user"></i> ${userInfo.fullname} <i class="fa-solid fa-right-from-bracket"></i>`;
+    authLink.href = "#"; // Ngăn chuyển trang
+    authLink.style.color = "#333"; // (Tùy chọn) Đổi màu chữ nếu cần
+
+    // Thêm sự kiện Click để Đăng xuất
+    authLink.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Xác nhận trước khi đăng xuất
+      if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+        localStorage.removeItem("user_info"); // Xóa thông tin user
+        localStorage.removeItem("cart"); // (Tùy chọn) Xóa giỏ hàng nếu muốn reset giỏ khi logout
+
+        alert("Đăng xuất thành công!");
+        window.location.href = "index.html"; // Quay về trang chủ
+      }
+    });
+  } else {
+    // --- TRƯỜNG HỢP: CHƯA ĐĂNG NHẬP ---
+    authLink.innerHTML = `Đăng nhập <i class="fa-solid fa-user"></i>`;
+    authLink.href = "login.html";
+  }
 }
 
-// 2. Hàm thêm sản phẩm vào giỏ
-function addToCart(productId) {
-    // Lấy giỏ hàng hiện tại
-    let cart = JSON.parse(localStorage.getItem('shopping-cart'));
-    
-    // Kiểm tra xem sản phẩm đã có trong giỏ chưa
-    let existingProduct = cart.find(item => item.id == productId);
-
-    if (existingProduct) {
-        // Nếu có rồi thì tăng số lượng
-        existingProduct.quantity += 1;
-    } else {
-        // Nếu chưa có thì thêm mới (mặc định số lượng là 1)
-        // Cần lấy thông tin sản phẩm từ db.js. 
-        // Lưu ý: Vì main.js chạy sau db.js nên gọi được getAllProducts()
-        let allProducts = getAllProducts(); 
-        let product = allProducts.find(p => p.id == productId);
-        
-        if(product) {
-            cart.push({
-                id: product.id,
-                title: product.title,
-                price: product.price,
-                image: product.image,
-                quantity: 1
-            });
-        }
-    }
-
-    // Lưu ngược lại vào LocalStorage
-    localStorage.setItem('shopping-cart', JSON.stringify(cart));
-    
-    // Cập nhật số lượng trên icon giỏ hàng và thông báo
-    updateCartCount();
-    alert("Đã thêm vào giỏ hàng thành công!");
-}
-
-// 3. Cập nhật số lượng trên icon Header
+// Hàm phụ: Cập nhật số lượng trên icon giỏ hàng (Để trang web chuyên nghiệp hơn)
 function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
-    let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    // Tìm thẻ span số lượng trong header (bạn cần thêm class 'cart-count-badge' vào file html)
-    let badge = document.querySelector('.cart-count');
-    if (badge) {
-        badge.innerText = totalCount;
-    }
+  const cartCountElement = document.querySelector(".cart-count");
+  if (cartCountElement) {
+    // Giả sử giỏ hàng bạn lưu trong localStorage tên là 'shopping_cart'
+    // Nếu chưa làm giỏ hàng thì có thể để trống hàm này
+    const cart = JSON.parse(localStorage.getItem("shopping_cart")) || [];
+    cartCountElement.innerText = cart.length; // Hoặc tổng số lượng item
+  }
 }
-
-// Chạy hàm khởi tạo
-initCart();

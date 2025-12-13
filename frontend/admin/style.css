@@ -154,7 +154,7 @@ td img {
 }
 .status.cancelled {
   background: #fdedec;
-  color: #e74c3c;
+  color: var(--primary);
 }
 
 .action-btn {
@@ -168,5 +168,5 @@ td img {
   color: #3498db;
 }
 .delete {
-  color: #e74c3c;
+  color: var(--primary);
 }

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* CSS riêng cho Form */
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .header-title {
+        color: var(--primary);
+      }
+      .form-container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+      .preview-img {
+        margin-top: 10px;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+        border: 1px dashed #ccc;
+        display: none;
+      }
+      .btn-submit {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="brand"><i class="fa-solid fa-spa"></i> Blossom Admin</div>
+      <nav>
+        <a href="dashboard.html" class="menu-item"
+          ><i class="fa-solid fa-chart-pie"></i> Tổng quan</a
+        >
+        <a href="products.html" class="menu-item active"
+          ><i class="fa-solid fa-box-open"></i> Sản phẩm</a
+        >
+        <a href="orders.html" class="menu-item"
+          ><i class="fa-solid fa-cart-shopping"></i> Đơn hàng</a
+        >
+        <a href="../index.html" class="menu-item"
+          ><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a
+        >
+      </nav>
+    </div>
+
+    <div class="main-content">
+      <h2 class="header-title" id="form-title">Thêm sản phẩm mới</h2>
+
+      <div class="form-container">
+        <form id="product-form" enctype="multipart/form-data">
+          <div class="form-group">
+            <label>Tên sản phẩm</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div style="display: flex; gap: 20px">
+            <div class="form-group" style="flex: 1">
+              <label>Giá (VNĐ)</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group" style="flex: 1">
+              <label>Danh mục</label>
+              <select id="category_id" name="category_id" class="form-control">
+                <option value="1">Trang điểm</option>
+                <option value="2">Chăm sóc da</option>
+                <option value="3">Nước hoa</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Mô tả chi tiết</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="5"
+              class="form-control"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Hình ảnh</label>
+            <input
+              type="file"
+              id="thumbnail"
+              name="thumbnail"
+              class="form-control"
+              accept="image/*"
+            />
+            <img id="preview" src="#" class="preview-img" />
+          </div>
+
+          <div style="text-align: right">
+            <a
+              href="products.html"
+              class="btn"
+              style="
+                background: #ccc;
+                margin-right: 10px;
+                text-decoration: none;
+                color: #333;
+                padding: 10px 20px;
+                border-radius: 5px;
+              "
+              >Hủy</a
+            >
+            <button type="submit" class="btn-submit">Lưu sản phẩm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../assets/js/admin/product-form.js"></script>
+  </body>
+</html>

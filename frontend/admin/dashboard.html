@@ -1,95 +1,88 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <div class="sidebar">
-        <div class="brand">
-            <i class="fa-solid fa-spa"></i> Blossom Admin
-        </div>
-        <nav>
-            <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-chart-pie"></i> Tổng quan</a>
-            <a href="products.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Sản phẩm</a>
-            <a href="orders.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Đơn hàng</a>
-            <a href="../index.html" class="menu-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a>
-        </nav>
+      <div class="brand"><i class="fa-solid fa-spa"></i> Blossom Admin</div>
+      <nav>
+        <a href="dashboard.html" class="menu-item active"
+          ><i class="fa-solid fa-chart-pie"></i> Tổng quan</a
+        >
+        <a href="products.html" class="menu-item"
+          ><i class="fa-solid fa-box-open"></i> Sản phẩm</a
+        >
+        <a href="orders.html" class="menu-item"
+          ><i class="fa-solid fa-cart-shopping"></i> Đơn hàng</a
+        >
+        <a href="../index.html" class="menu-item"
+          ><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a
+        >
+      </nav>
     </div>
 
     <div class="main-content">
-        <h2 class="header-title">Tổng quan báo cáo</h2>
+      <h2 class="header-title">Tổng quan báo cáo</h2>
 
-        <div class="stats-grid">
-            <div class="card">
-                <div class="card-info">
-                    <h3>150</h3>
-                    <p>Đơn hàng mới</p>
-                </div>
-                <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
-            </div>
-            <div class="card">
-                <div class="card-info">
-                    <h3>53.2M</h3>
-                    <p>Doanh thu (VNĐ)</p>
-                </div>
-                <div class="card-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
-            </div>
-            <div class="card">
-                <div class="card-info">
-                    <h3>1,200</h3>
-                    <p>Khách hàng</p>
-                </div>
-                <div class="card-icon"><i class="fa-solid fa-users"></i></div>
-            </div>
-            <div class="card">
-                <div class="card-info">
-                    <h3>45</h3>
-                    <p>Sản phẩm</p>
-                </div>
-                <div class="card-icon"><i class="fa-solid fa-box"></i></div>
-            </div>
+      <div class="stats-grid">
+        <div class="card">
+          <div class="card-info">
+            <h3 id="stat-orders">0</h3>
+            <p>Đơn hàng mới</p>
+          </div>
+          <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
         </div>
+        <div class="card">
+          <div class="card-info">
+            <h3 id="stat-revenue">0₫</h3>
+            <p>Doanh thu</p>
+          </div>
+          <div class="card-icon">
+            <i class="fa-solid fa-money-bill-wave"></i>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-info">
+            <h3 id="stat-customers">0</h3>
+            <p>Khách hàng</p>
+          </div>
+          <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+        </div>
+        <div class="card">
+          <div class="card-info">
+            <h3 id="stat-products">0</h3>
+            <p>Sản phẩm</p>
+          </div>
+          <div class="card-icon"><i class="fa-solid fa-box"></i></div>
+        </div>
+      </div>
 
-        <div class="table-container">
-            <h3 style="margin-bottom: 20px; color: var(--dark);">Đơn hàng gần đây</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mã ĐH</th>
-                        <th>Khách hàng</th>
-                        <th>Tổng tiền</th>
-                        <th>Trạng thái</th>
-                        <th>Ngày đặt</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>#ORD001</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>350.000₫</td>
-                        <td><span class="status delivered">Đã giao</span></td>
-                        <td>20/11/2024</td>
-                    </tr>
-                    <tr>
-                        <td>#ORD002</td>
-                        <td>Trần Thị B</td>
-                        <td>1.250.000₫</td>
-                        <td><span class="status pending">Chờ xử lý</span></td>
-                        <td>21/11/2024</td>
-                    </tr>
-                    <tr>
-                        <td>#ORD003</td>
-                        <td>Lê Văn C</td>
-                        <td>500.000₫</td>
-                        <td><span class="status cancelled">Đã hủy</span></td>
-                        <td>21/11/2024</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <div class="table-container">
+        <h3 style="margin-bottom: 20px; color: var(--dark)">
+          Đơn hàng gần đây
+        </h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Mã ĐH</th>
+              <th>Khách hàng</th>
+              <th>Tổng tiền</th>
+              <th>Trạng thái</th>
+              <th>Ngày đặt</th>
+            </tr>
+          </thead>
+          <tbody id="recent-orders-body"></tbody>
+        </table>
+      </div>
+
+      <script src="../assets/js/admin/dashboard.js"></script>
     </div>
-</body>
+  </body>
 </html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh toán chuyển khoản - Blossom Store</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* CSS riêng cho trang thanh toán */
+      .payment-container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        overflow: hidden;
+      }
+      .payment-info {
+        padding: 40px;
+        flex: 1;
+      }
+      .qr-section {
+        background: #f8f9fa;
+        padding: 40px;
+        width: 350px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid #eee;
+      }
+      .qr-img {
+        width: 100%;
+        max-width: 250px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 15px;
+      }
+      .timer {
+        color: #ff523b;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .copy-box {
+        background: #f1f1f1;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+      }
+      .copy-btn {
+        background: none;
+        border: none;
+        color: var(--primary);
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .confirm-btn {
+        background: #28a745;
+        color: white;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+      .confirm-btn:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="index.html" class="logo">Blossom.</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="payment-container">
+        <div class="payment-info">
+          <h2 style="color: var(--primary-hover); margin-bottom: 20px">
+            Thanh toán đơn hàng
+          </h2>
+          <p>
+            Vui lòng chuyển khoản đúng nội dung bên dưới để hệ thống tự động xác
+            nhận.
+          </p>
+
+          <div style="margin-top: 30px">
+            <label style="font-weight: bold; display: block; margin-bottom: 5px"
+              >Ngân hàng</label
+            >
+            <div class="copy-box">
+              <span>MB BANK (Quân Đội)</span>
+            </div>
+
+            <label style="font-weight: bold; display: block; margin-bottom: 5px"
+              >Số tài khoản</label
+            >
+            <div class="copy-box">
+              <span id="acc-number">0363092603</span>
+              <button class="copy-btn" onclick="copyToClipboard('acc-number')">
+                Sao chép
+              </button>
+            </div>
+
+            <label style="font-weight: bold; display: block; margin-bottom: 5px"
+              >Chủ tài khoản</label
+            >
+            <div class="copy-box">
+              <span id="acc-name">VO THANH NHAN</span>
+            </div>
+
+            <label style="font-weight: bold; display: block; margin-bottom: 5px"
+              >Số tiền</label
+            >
+            <div class="copy-box">
+              <span id="amount-text" style="color: #ff523b; font-weight: bold"
+                >3.990.000₫</span
+              >
+              <button class="copy-btn" onclick="copyToClipboard('amount-text')">
+                Sao chép
+              </button>
+            </div>
+
+            <label style="font-weight: bold; display: block; margin-bottom: 5px"
+              >Nội dung chuyển khoản</label
+            >
+            <div class="copy-box">
+              <span id="content-text" style="color: #28a745; font-weight: bold"
+                >...</span
+              >
+              <button
+                class="copy-btn"
+                onclick="copyToClipboard('content-text')"
+              >
+                Sao chép
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="qr-section">
+          <p>Quét mã QR để thanh toán nhanh</p>
+          <img
+            id="qr-code-img"
+            src="../backend/data/img/download.jpg"
+            alt="QR Code"
+            class="qr-img"
+          />
+
+          <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px">
+            Mở ứng dụng ngân hàng và quét mã trên để thanh toán.
+          </p>
+
+          <button class="confirm-btn" onclick="finishPayment()">
+            <i class="fa-solid fa-check"></i> ĐÃ CHUYỂN KHOẢN
+          </button>
+          <a
+            href="index.html"
+            style="
+              display: block;
+              margin-top: 15px;
+              font-size: 0.9rem;
+              color: #666;
+            "
+            >Thanh toán sau</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/payment.js"></script>
+  </body>
+</html>
